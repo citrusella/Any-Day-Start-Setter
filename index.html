@@ -11,16 +11,25 @@ This tool was developed after seeing concerns in the Tavern from people who need
 <p>This tool <strong>will <em>not</em> work</strong> in any version of Internet Explorer.</p>
 <p><strong>Before using this tool, you should understand the following the following:</strong></p>
 <ul>
-<li>You should understand <a href="https://habitica.fandom.com/wiki/Custom_Day_Start#Examples_and_a_Warning_about_Late_Custom_Day_Start_Times" target="_blank">the warning about late Custom Day Starts on the Custom Day Start page on Habitica Wiki</a> (and are unlikely to contact staff about how late day starts work because you understand it is not a bug that they function that way).<ul>
+<li>You should understand <a href="https://habitica.fandom.com/wiki/Custom_Day_Start#Examples_and_a_Warning_about_Late_Custom_Day_Start_Times" target="_blank">the warning about late Custom Day Starts on the Custom Day Start page on Habitica Wiki</a> (and 
+should be unlikely to contact staff about how late day starts work because you understand it is not a bug that they function that way).<ul>
 	<li>To summarize: Late day starts cannot move <em>backward</em> from midnight (the default day start time), only forward. This means that your day will start however many hours <em>later</em> than midnight you set, and it cannot move backward and start <em>earlier</em>.</li>
+	<li>For example: A 10 p.m. day start is 22 hours <em>later</em> than the 
+	start of the day in your timezone, <strong>not</strong> 2 hours <em>earlier</em>.</li>
 </ul>
 	</li>
-<li>Please understand that this tool could permanently stop working to set later day starts at any time, if the API's behavior is modified to match the available times on the website and block/error on the selection of other times. (I don't know that this is very likely to happen on v3 of the API, but
-	<em>if</em> it happens then I will not be able to fix it.</li>
+<li>Please understand that if the API's behavior is modified to match the available times on the website and block/error on the selection of other times, 
+this tool could permanently stop working to set later day starts. (I don't know that this is very likely to happen on v3 of the API, but
+	<em>if</em> it happens then I will likely not be able to fix it.</li>
 <li>Changing your day start to a time after 12 p.m. (noon / +12) will cause the website's day start dropdown to become blank. This is a side effect of those times no longer being a valid setting in the website's interface, even though your account can still be set to them "behind the scenes".<ul>
 	<li>The website and/or the app are probably a better option to change your 
-	Custom Day Start if they support the option you are selecting (the website 
-	supports 12 a.m. to 12 p.m.).</li>
+	Custom Day Start if they support the option you are selecting.<ul>
+		<li>The website supports 12 a.m. to 12 p.m.</li>
+		<li>The Android app supports all hours from 12 a.m. to 11 p.m. as of the 
+		last update to this tool.</li>
+		<li>I do not have iOS, so I cannot confirm what hours it supports.</li>
+	</ul>
+	</li>
 </ul>
 	</li>
 </ul>
@@ -60,7 +69,7 @@ This tool was developed after seeing concerns in the Tavern from people who need
 				<option value="23">11 p.m. (+23)</option>
 			</select><br />
 			<input name="Submit" type="submit" id="button" value="Change my Custom Day Start!" /></form>
-<p id="response"></p>
+<p id="message"></p>
 <script>
 var form=document.getElementById('form')
 	
@@ -71,8 +80,7 @@ form.addEventListener('submit', function(e){
 	var userId = document.getElementById('uuid').value;
 	var secretToken = document.getElementById('apiToken').value;
 	var dayStartSelection = document.getElementById('cds').value;
-	var response = document.getElementById("response");
-		
+			
 	fetch('https://habitica.com/api/v3/user/custom-day-start', {
   		method: 'POST',
   		body: JSON.stringify({
@@ -89,8 +97,16 @@ form.addEventListener('submit', function(e){
   		return response.json()})
   	.then(function(data)
   		{console.log(data)
-  			response = document.getElementById("response")
-  			response.innerHTML = data.message
+  			message = document.getElementById("message")
+  			if (data.success == false) {
+  				if (data.error == 'BadRequest') {
+	  				message.innerHTML = data.errors.message
+	  			} else {
+	  				message.innerHTML = data.message
+	  			}
+  			} else if (data.success == true) {
+  				message.innerHTML = data.data.message
+  			}
 	}).catch(error => console.error('Error:', error)); 
 });
 </script>

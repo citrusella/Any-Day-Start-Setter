@@ -8,7 +8,7 @@
 <body>
 <div class="titleLine">
 <h1>Any Day Start Setter for Habitica</h1>
-<span id="bylineAndVer">by citrusella (version 0.9.0)</span>
+<span id="bylineAndVer">by citrusella (version 1.0.0)</span>
 </div>
 <p>This is a third party tool for <a href="https://habitica.com" target="_blank">Habitica</a> which can change your <a href="https://habitica.fandom.com/wiki/Custom_Day_Start" target="_blank">Custom Day Start</a> (when your Habitica day "rolls over", the earliest time your account can run <a href="https://habitica.fandom.com/wiki/Cron" target="_blank">Cron</a>) to any value supported by the API, even if the client you use does not support selecting that time.
 This tool was developed after seeing concerns in the Tavern from people who needed later Custom Day Start settings after the website removed the ability to select options later than 12 p.m.</p>
@@ -42,10 +42,11 @@ this tool could permanently stop working to set later day starts. (I don't know 
 	</li>
 </ul>
 <h2>Instructions</h2>
-<p>To start, go to <a href="https://habitica.com/user/settings/api" target="_blank">[User Icon dropdown] &gt; Settings &gt; API</a> and find your User ID and API token. (This website only uses the UUID and API token to make the change and does not store any information.)</p>
+<p>To start, go to <a href="https://habitica.com/user/settings/api" target="_blank">[User Icon dropdown] &gt; Settings &gt; API</a> and find your User ID and API token. Put the User ID and API token in the corresponding text boxes below. (This website only uses the UUID and API token to make the change and does not store any information.)</p>
 <p>Then, pick the time you want to set your custom day start to and press "Change my Custom Day Start!"</p>
 <p>After you send the change, a message will appear next to the change button 
-indicating whether or not it was a success. The possible messages come directly 
+indicating whether or not it was a success. All error messages are outlined in 
+red, and the success message is outlined in green. The possible messages come directly 
 from the information this site gets back from Habitica when you send the change:</p>
 <ul>
 	<li>The message "Your custom day start has changed." means the change was a 
@@ -53,8 +54,8 @@ from the information this site gets back from Habitica when you send the change:
 	able to see evidence of the change on the Settings page on Habitica. Happy 
 	habiting!</li>
 	<li>The message "There is no account that uses those credentials." means 
-	that your User ID and/or your API Token are incorrect, so Habitica could not 
-	send the information to your account. Double check that the values <em>
+	that your User ID and/or your API Token are incorrect, so this webpage could not 
+	send the information to your Habitica account. Double check that the values <em>
 	exactly</em> match your User ID and API Token on the Settings &gt; API page.<ul>
 		<li>Similarly, "Missing authentication headers." means that either your 
 		User ID or your API Token (or both) are missing. Make sure all the 

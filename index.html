@@ -2,20 +2,99 @@
 <html>
 
 <head>
-<meta content="en-us" http-equiv="Content-Language" />
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<title>By using this tool</title>
+<meta charset="utf-8">
+<title>Any Day Start Setter for Habitica</title>
 </head>
-
 <body>
+<h1>Any Day Start Setter for Habitica</h1>
+<p>This is a third party tool for <a href="https://habitica.com">Habitica</a> which can change your <a href="https://habitica.fandom.com/wiki/Custom_Day_Start">Custom Day Start</a> (when your Habitica day "rolls over", the earliest time your account can run <a href="https://habitica.fandom.com/wiki/Cron">Cron</a>) to any value supported by the API, even if the client you use does not support selecting that time.
+This tool was developed after seeing concerns in the Tavern from people who needed later Custom Day Start settings after the website removed the ability to select options later than 12 p.m.</p>
 <p><strong>By using this tool, you acknowledge the following:</strong></p>
 <ul>
 <li>You understand <a href="https://habitica.fandom.com/wiki/Custom_Day_Start#Examples_and_a_Warning_about_Late_Custom_Day_Start_Times">the warning about late Custom Day Starts on the Custom Day Start page on Habitica Wiki</a> (and are unlikely to contact staff about how late day starts work because you understand it is not a bug that they function that way).<ul>
 	<li>To summarize here: Late day starts cannot move <em>backward</em> from midnight (the default day start time), only forward. This means that your day will start however many hours <em>later</em> than midnight you set, and it cannot move backward and start <em>earlier</em>.</li>
 </ul>
 	</li>
-<li>You understand that this tool could permanently stop working at any time, if the API's behavior is modified to match the available times on the website and block/error on the selection of other times.</li>
-<li>You understand that changing your day start to a time after 12pm (noon / +12) will cause the website's day start dropdown to become blank. This is a side effect of those times no longer being a valid setting in the website's interface even though your account can still be set to them behind the scenes.</li></ul>
+<li>You understand that this tool could permanently stop working to set later day starts at any time, if the API's behavior is modified to match the available times on the website and block/error on the selection of other times.<ul>
+	<li>I don't know that this is very likely to happen on v3 of the API, but
+	<em>if</em> it happens then I will not be able to fix it.</li>
+</ul>
+	</li>
+<li>You understand that changing your day start to a time after 12 p.m. (noon / +12) will cause the website's day start dropdown to become blank. This is a side effect of those times no longer being a valid setting in the website's interface even though your account can still be set to them behind the scenes.<ul>
+	<li>The website and/or the app are probably a better option to change your 
+	Custom Day Start if they support the option you are selecting (the website 
+	supports 12 a.m. to 12 p.m.).</li>
+</ul>
+	</li>
+</ul>
+<p>This tool <strong>will <em>not</em> work</strong> in any version of Internet Explorer.</p>
+<p>To start, go to <a href="https://habitica.com/user/settings/api">[User Icon dropdown] &gt; Settings &gt; API</a> and find your User ID and API token. (This website only uses the UUID and API token to make the change and does not store any information.)</p>
+<p>Then, pick the time you want to set your custom day start to and press "Save". You will see a message indicating whether or not it was a success.</p>
+<form id="form" method="post">
+	<label for="uuid">User ID</label>
+	<input name="userId" id="uuid" type="text"><br />
+	<label for="apiToken">API Token</label>
+	<input name="secretToken" id="apiToken" type="password"><br />
+	<label for="cds">Desired Custom Day Start</label>
+	<select name="customDayStart" id="cds">
+				<option value="0">Default: 12 a.m. (+0)</option>
+				<option value="1">1 a.m. (+1)</option>
+				<option value="2">2 a.m. (+2)</option>
+				<option value="3">3 a.m. (+3)</option>
+				<option value="4">4 a.m. (+4)</option>
+				<option value="5">5 a.m. (+5)</option>
+				<option value="6">6 a.m. (+6)</option>
+				<option value="7">7 a.m. (+7)</option>
+				<option value="8">8 a.m. (+8)</option>
+				<option value="9">9 a.m. (+9)</option>
+				<option value="10">10 a.m. (+10)</option>
+				<option value="11">11 a.m. (+11)</option>
+				<option value="12">12 a.m. (+12)</option>
+				<option value="13">1 p.m. (+13)</option>
+				<option value="14">2 p.m. (+14)</option>
+				<option value="15">3 p.m. (+15)</option>
+				<option value="16">4 p.m. (+16)</option>
+				<option value="17">5 p.m. (+17)</option>
+				<option value="18">6 p.m. (+18)</option>
+				<option value="19">7 p.m. (+19)</option>
+				<option value="20">8 p.m. (+20)</option>
+				<option value="21">9 p.m. (+21)</option>
+				<option value="22">10 p.m. (+22)</option>
+				<option value="23">11 p.m. (+23)</option>
+			</select><br />
+			<input name="Submit" type="submit" id="button" value="Change my Custom Day Start!" /></form>
+<p id="response"></p>
+<script>
+var form=document.getElementById('form')
+	
+form.addEventListener('submit', function(e){
+ 	e.preventDefault()
+	
+	var clientId = '2d6ef231-50b4-4a22-90e7-45eb97147a2c-anyCustomDayStart';
+	var userId = document.getElementById('uuid').value;
+	var secretToken = document.getElementById('apiToken').value;
+	var dayStartSelection = document.getElementById('cds').value;
+		
+	fetch('https://habitica.com/api/v3/user/custom-day-start', {
+  		method: 'POST',
+  		body: JSON.stringify({
+    		dayStart: dayStartSelection
+		}),
+  		headers: {
+    		'Content-type': 'application/json; charset=UTF-8',
+    		'x-client': clientId,
+    		'x-api-user': userId,
+    		'x-api-key': secretToken
+  		}
+  	})
+  	.then(function(response){ 
+  		return response.json()})
+  	.then(function(data)
+  		{console.log(data)
+  			response=document.getElementById("response")
+  			response.innerHTML = data.message
+	}).catch(error => console.error('Error:', error)); 
+});
+</script>
 </body>
-
 </html>

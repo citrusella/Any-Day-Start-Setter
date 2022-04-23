@@ -1,0 +1,38 @@
+﻿body {
+	background-color: #F9F9F9;
+	font-family: Roboto, sans-serif;
+}
+#message {
+	margin-left: 16px;
+	padding: 4px;
+
+}
+.failure {
+	border: 2px solid #F23035;
+	border-radius: 4px;
+}
+.success {
+	border: 2px solid #1CA372;
+	border-radius: 4px;
+}
+#submit, #cds, #apiToken, #uuid {
+	padding: 4px;
+}
+label {
+	padding-right: 0.4em;
+}
+form {
+	display: flex;
+	min-width: 440px;
+	flex-flow: column wrap;
+	align-items: center;
+}
+.field {
+	display: flex;
+	padding-bottom: 0.4em;
+	align-items: center;
+}
+.subitem {
+	flex-grow: 1;
+	align-content: space-between;
+}

@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <title>Any Day Start Setter for Habitica</title>
+<link href="index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1>Any Day Start Setter for Habitica</h1>
+<div id="bylineAndVer">by citrusella (version 0.5.0)</div>
 <p>This is a third party tool for <a href="https://habitica.com" target="_blank">Habitica</a> which can change your <a href="https://habitica.fandom.com/wiki/Custom_Day_Start" target="_blank">Custom Day Start</a> (when your Habitica day "rolls over", the earliest time your account can run <a href="https://habitica.fandom.com/wiki/Cron" target="_blank">Cron</a>) to any value supported by the API, even if the client you use does not support selecting that time.
 This tool was developed after seeing concerns in the Tavern from people who needed later Custom Day Start settings after the website removed the ability to select options later than 12 p.m.</p>
 <p>This tool <strong>will <em>not</em> work</strong> in any version of Internet Explorer.</p>
-<p><strong>Before using this tool, you should understand the following the following:</strong></p>
+<p><strong>Before using this tool, you should understand the following:</strong></p>
 <ul>
 <li>You should understand <a href="https://habitica.fandom.com/wiki/Custom_Day_Start#Examples_and_a_Warning_about_Late_Custom_Day_Start_Times" target="_blank">the warning about late Custom Day Starts on the Custom Day Start page on Habitica Wiki</a> (and 
 should be unlikely to contact staff about how late day starts work because you understand it is not a bug that they function that way).<ul>
@@ -18,9 +20,13 @@ should be unlikely to contact staff about how late day starts work because you u
 	start of the day in your timezone, <strong>not</strong> 2 hours <em>earlier</em>.</li>
 </ul>
 	</li>
+<li>Changing your Custom Day Start on the website or app displays a warning 
+informing you the earliest possible calendar day and time that your next Cron 
+will run upon changing your Custom Day Start. Keep in mind that this tool does 
+not display that warning.</li>
 <li>Please understand that if the API's behavior is modified to match the available times on the website and block/error on the selection of other times, 
 this tool could permanently stop working to set later day starts. (I don't know that this is very likely to happen on v3 of the API, but
-	<em>if</em> it happens then I will likely not be able to fix it.</li>
+	<em>if</em> it happens then I will likely not be able to fix it.)</li>
 <li>Changing your day start to a time after 12 p.m. (noon / +12) will cause the website's day start dropdown to become blank. This is a side effect of those times no longer being a valid setting in the website's interface, even though your account can still be set to them "behind the scenes".<ul>
 	<li>The website and/or the app are probably a better option to change your 
 	Custom Day Start if they support the option you are selecting.<ul>
@@ -35,14 +41,35 @@ this tool could permanently stop working to set later day starts. (I don't know 
 </ul>
 <h2>Instructions</h2>
 <p>To start, go to <a href="https://habitica.com/user/settings/api" target="_blank">[User Icon dropdown] &gt; Settings &gt; API</a> and find your User ID and API token. (This website only uses the UUID and API token to make the change and does not store any information.)</p>
-<p>Then, pick the time you want to set your custom day start to and press "Change my Custom Day Start!" You will see a message indicating whether or not it was a success.</p>
+<p>Then, pick the time you want to set your custom day start to and press "Change my Custom Day Start!"</p>
+<p>After you send the change, a message will appear next to the change button 
+indicating whether or not it was a success. The possible messages come directly 
+from the information this site gets back from Habitica when you send the change:</p>
+<ul>
+	<li>The message "Your custom day start has changed." means the change was a 
+	success, and your Custom Day Start should be saved on Habitica! You should be 
+	able to see evidence of the change on the Settings page on Habitica. Happy 
+	habiting!</li>
+	<li>The message "There is no account that uses those credentials." means 
+	that your User ID and/or your API Token are incorrect, so Habitica could not 
+	send the information to your account. Double check that the values <em>
+	exactly</em> match your User ID and API Token on the Settings &gt; API page.<ul>
+		<li>Similarly, "Missing authentication headers." means that either your 
+		User ID or your API Token (or both) are missing. Make sure all the 
+		boxes are filled out before pressing the "Change My Custom Day Start!" 
+		button.</li>
+	</ul>
+	</li>
+	<li>If you see any other message, you can contact me using the private message button on
+	<a href="https://habitica.com/profile/2d6ef231-50b4-4a22-90e7-45eb97147a2c" target="_blank">my Habitica profile</a> or
+	<a href="https://github.com/citrusella/Any-Day-Start-Setter/issues" target="_blank">log an issue on this tool's Github repository</a>, so that the reason for the 
+	message can either be fixed (in the case of a bug with the tool) or 
+	described here (in the case of an error with the entered information).</li>
+</ul>
 <form id="form" method="post">
-	<label for="uuid">User ID</label>
-	<input name="userId" id="uuid" type="text"><br />
-	<label for="apiToken">API Token</label>
-	<input name="secretToken" id="apiToken" type="password"><br />
-	<label for="cds">Desired Custom Day Start</label>
-	<select name="customDayStart" id="cds">
+	<div class="field"><label for="uuid" class="subitem">User ID</label><input name="userId" id="uuid" type="text" class="subitem"></div>
+	<div class="field"><label for="apiToken" class="subitem">API Token</label><input name="secretToken" id="apiToken" type="password" class="subitem"></div>
+	<div class="field"><label for="cds" class="subitem">Desired Custom Day Start</label><select name="customDayStart" id="cds" class="subitem">
 				<option value="0">Default: 12 a.m. (+0)</option>
 				<option value="1">1 a.m. (+1)</option>
 				<option value="2">2 a.m. (+2)</option>
@@ -55,7 +82,7 @@ this tool could permanently stop working to set later day starts. (I don't know 
 				<option value="9">9 a.m. (+9)</option>
 				<option value="10">10 a.m. (+10)</option>
 				<option value="11">11 a.m. (+11)</option>
-				<option value="12">12 a.m. (+12)</option>
+				<option value="12">12 p.m. (+12)</option>
 				<option value="13">1 p.m. (+13)</option>
 				<option value="14">2 p.m. (+14)</option>
 				<option value="15">3 p.m. (+15)</option>
@@ -67,9 +94,9 @@ this tool could permanently stop working to set later day starts. (I don't know 
 				<option value="21">9 p.m. (+21)</option>
 				<option value="22">10 p.m. (+22)</option>
 				<option value="23">11 p.m. (+23)</option>
-			</select><br />
-			<input name="Submit" type="submit" id="button" value="Change my Custom Day Start!" /></form>
-<p id="message"></p>
+		</select></div>
+		<div class="field"><input name="Submit" type="submit" id="submit" value="Change my Custom Day Start!" class="subitem" /><span id="message" class="subitem"></span></div>
+</form>
 <script>
 var form=document.getElementById('form')
 	
@@ -101,11 +128,16 @@ form.addEventListener('submit', function(e){
   			if (data.success == false) {
   				if (data.error == 'BadRequest') {
 	  				message.innerHTML = data.errors.message
+	  				message.className = failure
 	  			} else {
 	  				message.innerHTML = data.message
+	  				message.className = 'failure'
+
 	  			}
   			} else if (data.success == true) {
   				message.innerHTML = data.data.message
+  				message.className = 'success'
+
   			}
 	}).catch(error => console.error('Error:', error)); 
 });

@@ -1,4 +1,4 @@
-# Any-Day-Start-Setter
+# Any Day Start Setter
 A third party tool for [Habitica](https://habitica.com) that allows setting any custom day start supported by the API, even if the official client doesn't support selecting it. The tool is a website accessed at https://citrusella.github.io/Any-Day-Start-Setter
 
 Before using this tool, you should understand:

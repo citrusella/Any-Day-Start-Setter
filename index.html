@@ -6,8 +6,10 @@
 <link href="index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div class="titleLine">
 <h1>Any Day Start Setter for Habitica</h1>
-<div id="bylineAndVer">by citrusella (version 0.5.0)</div>
+<span id="bylineAndVer">by citrusella (version 0.9.0)</span>
+</div>
 <p>This is a third party tool for <a href="https://habitica.com" target="_blank">Habitica</a> which can change your <a href="https://habitica.fandom.com/wiki/Custom_Day_Start" target="_blank">Custom Day Start</a> (when your Habitica day "rolls over", the earliest time your account can run <a href="https://habitica.fandom.com/wiki/Cron" target="_blank">Cron</a>) to any value supported by the API, even if the client you use does not support selecting that time.
 This tool was developed after seeing concerns in the Tavern from people who needed later Custom Day Start settings after the website removed the ability to select options later than 12 p.m.</p>
 <p>This tool <strong>will <em>not</em> work</strong> in any version of Internet Explorer.</p>
@@ -61,15 +63,15 @@ from the information this site gets back from Habitica when you send the change:
 	</ul>
 	</li>
 	<li>If you see any other message, you can contact me using the private message button on
-	<a href="https://habitica.com/profile/2d6ef231-50b4-4a22-90e7-45eb97147a2c" target="_blank">my Habitica profile</a> or
+	<a href="https://habitica.com/profile/2d6ef231-50b4-4a22-90e7-45eb97147a2c" target="_blank">citrusella's Habitica profile</a> or
 	<a href="https://github.com/citrusella/Any-Day-Start-Setter/issues" target="_blank">log an issue on this tool's Github repository</a>, so that the reason for the 
 	message can either be fixed (in the case of a bug with the tool) or 
 	described here (in the case of an error with the entered information).</li>
 </ul>
 <form id="form" method="post">
-	<div class="field"><label for="uuid" class="subitem">User ID</label><input name="userId" id="uuid" type="text" class="subitem"></div>
-	<div class="field"><label for="apiToken" class="subitem">API Token</label><input name="secretToken" id="apiToken" type="password" class="subitem"></div>
-	<div class="field"><label for="cds" class="subitem">Desired Custom Day Start</label><select name="customDayStart" id="cds" class="subitem">
+	<div class="field"><label for="uuid" id="uuidLabel" class="subitem">User ID</label><input name="userId" id="uuid" type="text" class="subitem inputBox"></div>
+	<div class="field"><label for="apiToken" id="tokenLabel" class="subitem">API Token</label><input name="secretToken" id="apiToken" type="password" class="subitem inputBox"></div>
+	<div class="field"><label for="cds" id="cdsLabel" class="subitem">Desired Custom Day Start</label><select name="customDayStart" id="cds" class="subitem">
 				<option value="0">Default: 12 a.m. (+0)</option>
 				<option value="1">1 a.m. (+1)</option>
 				<option value="2">2 a.m. (+2)</option>

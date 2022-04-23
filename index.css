@@ -1,11 +1,24 @@
 ﻿body {
 	background-color: #F9F9F9;
-	font-family: Roboto, sans-serif;
+	font: 0.9rem sans-serif;
+}
+#bylineAndVer {
+	font-size: 0.8rem;
+	margin-bottom: 0.15rem;
+}
+h1 {
+	margin-bottom: 0;
+	padding-right: 0.4rem;
+}
+.titleLine {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
 }
 #message {
 	margin-left: 16px;
 	padding: 4px;
-
+	align-self: center;
 }
 .failure {
 	border: 2px solid #F23035;
@@ -18,21 +31,50 @@
 #submit, #cds, #apiToken, #uuid {
 	padding: 4px;
 }
+#submit {
+	border-radius: 4px;
+	border: 1px solid transparent;
+	align-self: flex-start;
+	max-width: 225px;
+	background-color: #4F2A93;
+	font-weight: 700;
+	color: #FFFFFF;
+	margin-bottom: 0.4rem;
+}
+#submit:hover {
+	background-color: #925CF3;
+}
+#submit:active {
+	background-color: #432874 !important;
+}
 label {
-	padding-right: 0.4em;
+	padding-right: 0.4rem;
 }
 form {
 	display: flex;
-	min-width: 440px;
+	width: 75%;
+	margin: auto;
 	flex-flow: column wrap;
-	align-items: center;
+	align-items: stretch;
 }
 .field {
 	display: flex;
-	padding-bottom: 0.4em;
+	flex-wrap: wrap;
+	padding-bottom: 0.4rem;
 	align-items: center;
+	justify-content: space-between;
 }
 .subitem {
-	flex-grow: 1;
-	align-content: space-between;
+	flex: 1 1 auto;
+}
+.field .inputBox {
+	min-width: 22rem;
+	flex-grow: 3;
+}
+.field select {
+	min-width: 22.9rem;
+	flex-grow: 3;
+}
+.field label {
+	font-weight: 700;
 }

@@ -1,35 +1,32 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
 <title>Any Day Start Setter for Habitica</title>
 </head>
 <body>
 <h1>Any Day Start Setter for Habitica</h1>
-<p>This is a third party tool for <a href="https://habitica.com">Habitica</a> which can change your <a href="https://habitica.fandom.com/wiki/Custom_Day_Start">Custom Day Start</a> (when your Habitica day "rolls over", the earliest time your account can run <a href="https://habitica.fandom.com/wiki/Cron">Cron</a>) to any value supported by the API, even if the client you use does not support selecting that time.
+<p>This is a third party tool for <a href="https://habitica.com" target="_blank">Habitica</a> which can change your <a href="https://habitica.fandom.com/wiki/Custom_Day_Start" target="_blank">Custom Day Start</a> (when your Habitica day "rolls over", the earliest time your account can run <a href="https://habitica.fandom.com/wiki/Cron" target="_blank">Cron</a>) to any value supported by the API, even if the client you use does not support selecting that time.
 This tool was developed after seeing concerns in the Tavern from people who needed later Custom Day Start settings after the website removed the ability to select options later than 12 p.m.</p>
-<p><strong>By using this tool, you acknowledge the following:</strong></p>
+<p>This tool <strong>will <em>not</em> work</strong> in any version of Internet Explorer.</p>
+<p><strong>Before using this tool, you should understand the following the following:</strong></p>
 <ul>
-<li>You understand <a href="https://habitica.fandom.com/wiki/Custom_Day_Start#Examples_and_a_Warning_about_Late_Custom_Day_Start_Times">the warning about late Custom Day Starts on the Custom Day Start page on Habitica Wiki</a> (and are unlikely to contact staff about how late day starts work because you understand it is not a bug that they function that way).<ul>
-	<li>To summarize here: Late day starts cannot move <em>backward</em> from midnight (the default day start time), only forward. This means that your day will start however many hours <em>later</em> than midnight you set, and it cannot move backward and start <em>earlier</em>.</li>
+<li>You should understand <a href="https://habitica.fandom.com/wiki/Custom_Day_Start#Examples_and_a_Warning_about_Late_Custom_Day_Start_Times" target="_blank">the warning about late Custom Day Starts on the Custom Day Start page on Habitica Wiki</a> (and are unlikely to contact staff about how late day starts work because you understand it is not a bug that they function that way).<ul>
+	<li>To summarize: Late day starts cannot move <em>backward</em> from midnight (the default day start time), only forward. This means that your day will start however many hours <em>later</em> than midnight you set, and it cannot move backward and start <em>earlier</em>.</li>
 </ul>
 	</li>
-<li>You understand that this tool could permanently stop working to set later day starts at any time, if the API's behavior is modified to match the available times on the website and block/error on the selection of other times.<ul>
-	<li>I don't know that this is very likely to happen on v3 of the API, but
+<li>Please understand that this tool could permanently stop working to set later day starts at any time, if the API's behavior is modified to match the available times on the website and block/error on the selection of other times. (I don't know that this is very likely to happen on v3 of the API, but
 	<em>if</em> it happens then I will not be able to fix it.</li>
-</ul>
-	</li>
-<li>You understand that changing your day start to a time after 12 p.m. (noon / +12) will cause the website's day start dropdown to become blank. This is a side effect of those times no longer being a valid setting in the website's interface even though your account can still be set to them behind the scenes.<ul>
+<li>Changing your day start to a time after 12 p.m. (noon / +12) will cause the website's day start dropdown to become blank. This is a side effect of those times no longer being a valid setting in the website's interface, even though your account can still be set to them "behind the scenes".<ul>
 	<li>The website and/or the app are probably a better option to change your 
 	Custom Day Start if they support the option you are selecting (the website 
 	supports 12 a.m. to 12 p.m.).</li>
 </ul>
 	</li>
 </ul>
-<p>This tool <strong>will <em>not</em> work</strong> in any version of Internet Explorer.</p>
-<p>To start, go to <a href="https://habitica.com/user/settings/api">[User Icon dropdown] &gt; Settings &gt; API</a> and find your User ID and API token. (This website only uses the UUID and API token to make the change and does not store any information.)</p>
-<p>Then, pick the time you want to set your custom day start to and press "Save". You will see a message indicating whether or not it was a success.</p>
+<h2>Instructions</h2>
+<p>To start, go to <a href="https://habitica.com/user/settings/api" target="_blank">[User Icon dropdown] &gt; Settings &gt; API</a> and find your User ID and API token. (This website only uses the UUID and API token to make the change and does not store any information.)</p>
+<p>Then, pick the time you want to set your custom day start to and press "Change my Custom Day Start!" You will see a message indicating whether or not it was a success.</p>
 <form id="form" method="post">
 	<label for="uuid">User ID</label>
 	<input name="userId" id="uuid" type="text"><br />
@@ -74,6 +71,7 @@ form.addEventListener('submit', function(e){
 	var userId = document.getElementById('uuid').value;
 	var secretToken = document.getElementById('apiToken').value;
 	var dayStartSelection = document.getElementById('cds').value;
+	var response = document.getElementById("response");
 		
 	fetch('https://habitica.com/api/v3/user/custom-day-start', {
   		method: 'POST',
@@ -91,7 +89,7 @@ form.addEventListener('submit', function(e){
   		return response.json()})
   	.then(function(data)
   		{console.log(data)
-  			response=document.getElementById("response")
+  			response = document.getElementById("response")
   			response.innerHTML = data.message
 	}).catch(error => console.error('Error:', error)); 
 });

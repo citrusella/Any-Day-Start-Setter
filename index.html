@@ -8,7 +8,7 @@
 <body>
 <div class="titleLine">
 <h1>Any Day Start Setter for Habitica</h1>
-<span id="bylineAndVer">by citrusella (version 1.0.0)</span>
+<span id="bylineAndVer">by citrusella (version 1.0.1)</span>
 </div>
 <p>This is a third party tool for <a href="https://habitica.com" target="_blank">Habitica</a> which can change your <a href="https://habitica.fandom.com/wiki/Custom_Day_Start" target="_blank">Custom Day Start</a> (when your Habitica day "rolls over", the earliest time your account can run <a href="https://habitica.fandom.com/wiki/Cron" target="_blank">Cron</a>) to any value supported by the API, even if the client you use does not support selecting that time.
 This tool was developed after seeing concerns in the Tavern from people who needed later Custom Day Start settings after the website removed the ability to select options later than 12 p.m.</p>
@@ -32,10 +32,11 @@ this tool could permanently stop working to set later day starts. (I don't know 
 <li>Changing your day start to a time after 12 p.m. (noon / +12) will cause the website's day start dropdown to become blank. This is a side effect of those times no longer being a valid setting in the website's interface, even though your account can still be set to them "behind the scenes".<ul>
 	<li>The website and/or the app are probably a better option to change your 
 	Custom Day Start if they support the option you are selecting.<ul>
-		<li>The website supports 12 a.m. to 12 p.m.</li>
-		<li>The Android app supports all hours from 12 a.m. to 11 p.m. as of the 
+		<li>The website supports 12 a.m. to 12 p.m (0:00 to 12:00).</li>
+		<li>The Android app supports <strong>all</strong> hours from 12 a.m. to 11 p.m. (0:00 to 23:00, all 24 hours the API supports) as of the 
 		last update to this tool.</li>
-		<li>I do not have iOS, so I cannot confirm what hours it supports.</li>
+		<li>I do not use iOS and so cannot directly confirm this myself, but I have been told iOS supports the same hours the website does, 12 a.m. to 12 p.m 
+		(0:00 to 12:00).</li>
 	</ul>
 	</li>
 </ul>

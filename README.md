@@ -8,6 +8,6 @@ Before using this tool, you should understand:
 - If the API's behavior is modified to match the available times on the website and block/error on the selection of other times, this tool could permanently stop working to set later day starts. (I don't know that this is very likely to happen on v3 of the API, but if it happens then I will likely not be able to fix it.)
 - Changing your day start to a time after 12 p.m. (noon / +12) will cause the website's day start dropdown to become blank. This is a side effect of those times no longer being a valid setting in the website's interface, even though your account can still be set to them "behind the scenes".
   - The website and/or the app are probably a better option to change your Custom Day Start if they support the option you are selecting.
-     - The website supports 12 a.m. to 12 p.m.
-     - The Android app supports all hours from 12 a.m. to 11 p.m. as of the last update to this tool.
-     - I do not have iOS, so I cannot confirm what hours it supports.
+     - The website supports 12 a.m. to 12 p.m (0:00 to 12:00).
+     - The Android app supports **all** hours from 12 a.m. to 11 p.m. (0:00 to 23:00, all 24 hours the API supports) as of the last update to this tool.
+     - I do not use iOS and so cannot directly confirm this myself, but I have been told iOS supports the same hours the website does, 12 a.m. to 12 p.m (0:00 to 12:00).

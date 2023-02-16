@@ -34,10 +34,10 @@ NO SELLING THE WORK OR ITS ORGANS ON THE BLACK MARKET! You MAY NOT sell any part
 
 Here is what happens if you do not follow these rules:
 
-If the work was previously licensed under a more permissive (and irrevocable) license:
+If the work was previously licensed under a more permissive (and irrevocable) license:  
 That license might (probably does) still apply, or at least it applied to previous versions of the work, if parts of the work were changed or updated after this license was applied. In that case, this license might not be enforceable and thus is largely meant as an expression of the author's wishes.
 
-If the work was not previously licensed under a more permissive license:
+If the work was not previously licensed under a more permissive license:  
 This license is the one that applies. You may be subject to consequences if this license is violated. If this license was written in a way that makes it not legally enforceable, you may still be subject to karmic consequences for having angered the ghost of a dead work. And honestly, who really WANTS to be haunted by ART or CODE? Seriously.
 
 Just don't violate the license.

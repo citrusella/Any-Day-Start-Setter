@@ -1,5 +1,8 @@
 # Any Day Start Setter
-A third party tool for [Habitica](https://habitica.com) that allows setting any custom day start supported by the API, even if the official client doesn't support selecting it. The tool is a website accessed at https://citrusella.github.io/Any-Day-Start-Setter
+
+![Life Well Lived license badge](https://img.shields.io/badge/license-Life%20Well%20Lived-lightgrey) Version 2 of this tool is licensed under the Life Well Lived license, a license intended to let "retired" works "die a natural death". It disallows commercial use and modified/derivative works, as well as unmodified forks. Its full text can be read [here](https://github.com/citrusella/Any-Day-Start-Setter/blob/main/LICENSE).
+
+Any Day Start Setter is a third party tool for [Habitica](https://habitica.com) that allows setting any custom day start supported by the API, even if the official client doesn't support selecting it. The tool is a website accessed at https://citrusella.github.io/Any-Day-Start-Setter
 
 Before using this tool, you should understand:
 
